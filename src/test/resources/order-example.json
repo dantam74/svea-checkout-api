@@ -1,0 +1,82 @@
+{
+	"MerchantSettings": {
+		"TermsUri": "https://b2b-qa.cdon.se/terms",
+		"CheckoutUri": "https://b2b-qa.cdon.se/checkout",
+		"ConfirmationUri": "https://b2b-qa.cdon.se/confirm/56944050",
+		"PushUri": "https://cdonb2borderservicetest.azurewebsites.net/api/orderservice/v1/orders/svea/{checkout.order.uri}",
+		"CheckoutValidationCallBackUri": null,
+		"ActivePartPaymentCampaigns": [
+		],
+		"PromotedPartPaymentCampaign": 0
+	},
+	"Cart": {
+		"Items": [
+			{
+				"ArticleNumber": "10000000-8",
+				"Name": "Freight",
+				"Quantity": 100,
+				"UnitPrice": 9900,
+				"DiscountPercent": 0,
+				"VatPercent": 0,
+				"Unit": null,
+				"TemporaryReference": null,
+				"RowNumber": 1
+			},
+			{
+				"ArticleNumber": "5039102337",
+				"Name": "Adapter Swiss Travelproducts El-Adapter ",
+				"Quantity": 100,
+				"UnitPrice": 6900,
+				"DiscountPercent": 0,
+				"VatPercent": 2500,
+				"Unit": null,
+				"TemporaryReference": null,
+				"RowNumber": 2
+			}
+		]
+	},
+	"Customer": {
+		"NationalId": "194608142222",
+		"CountryCode": "SE",
+		"IsCompany": true,
+		"IsMale": null,
+		"DateOfBirth": null,
+		"Id": 0
+	},
+	"ShippingAddress": {
+		"FullName": "Persson, Tess T",
+		"FirstName": "Tess T",
+		"LastName": "Persson",
+		"StreetAddress": "Testgatan 1",
+		"CoAddress": "c/o Eriksson, Erik",
+		"PostalCode": "99999",
+		"City": "Stan",
+		"CountryCode": "SE"
+	},
+	"BillingAddress": {
+		"FullName": "Persson, Tess T",
+		"FirstName": "Tess T",
+		"LastName": "Persson",
+		"StreetAddress": "Testgatan 1",
+		"CoAddress": "c/o Eriksson, Erik",
+		"PostalCode": "99999",
+		"City": "Stan",
+		"CountryCode": "SE"
+	},
+	"Gui": {
+		"Layout": "desktop",
+		"Snippet": "<div id=\"svea-checkout-container\" style=\"overflow-x: hidden;\">\r\n    <noscript>\r\n        Please <a href=\"http://enable-javascript.com\">enable JavaScript</a>.\r\n    </noscript>\r\n\r\n    <iframe id=\"svea-checkout-iframe\" name=\"svea-checkout-iframe\" scrolling=\"no\" frameborder=\"0\" style=\"width: 100%; min-height: 480px; transition: min-height 0.15s\" ></iframe>\r\n</div>\r\n\r\n<script type=\"text/javascript\" src=\"https://checkoutapistage.svea.com/bundles/client-api\"></script>\r\n<script type=\"text/javascript\">\r\n    (function () {\r\n        var config = {\"OrderId\":154444,\"BootstrapSrc\":\"https://checkoutapistage.svea.com\",\"AuthToken\":\"SveaCheckout b4QndTGs3qTTFKIYQt1ncY0NL4k=\",\"ConfigKey\":\"_sveaConfirm\",\"Token\":\"304746F2F6F5AC469C299E961B36B12D\",\"IncludingDocument\":null};\r\n        config.includingDocument = document.URL;\r\n\r\n        var iframeUrl = config.BootstrapSrc + \"/bootstrap/get?cfg=\" + encodeURIComponent(JSON.stringify(config)) + \"#/checkout\";\r\n\r\n        window[config.ConfigKey] = {\r\n            \"config\" : config\r\n        };\r\n\r\n        var scoFrame = document.getElementById(\"svea-checkout-iframe\");\r\n        scoFrame.onload = function () {\r\n            var apiInstance = new SveaCheckoutApi(iframeUrl, scoFrame);\r\n\r\n            apiInstance.initialize(function (api) {\r\n                window[\"scoApi\"] = api;   \r\n\r\n                // Signal readiness\r\n                document.dispatchEvent(new CustomEvent(\"checkoutReady\"));\r\n            });\r\n        };\r\n        scoFrame.src = iframeUrl;\r\n    })();\r\n</script>"
+	},
+	"Locale": "sv",
+	"Currency": "SEK",
+	"CountryCode": "SE",
+	"PresetValues": null,
+	"ClientOrderNumber": "56944050",
+	"OrderId": 154444,
+	"EmailAddress": "testcompanycdon@gmail.com",
+	"PhoneNumber": "0701123123",
+	"PaymentType": "SVEACARDPAY",
+	"Status": "Final",
+	"CustomerReference": "Jennie",
+	"SveaWillBuyOrder": null
+}
