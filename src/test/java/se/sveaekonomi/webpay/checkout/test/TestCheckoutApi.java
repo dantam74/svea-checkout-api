@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import se.sveaekonomi.webpay.checkout.CheckoutApiClientRF;
+import se.sveaekonomi.webpay.checkout.entity.Order;
 
 public class TestCheckoutApi {
 
@@ -25,12 +26,20 @@ public class TestCheckoutApi {
 		CheckoutApiClientRF client = new CheckoutApiClientRF();
 		try {
 		
-			client.loadConfig("config-test.xml");
+			client.loadConfig("config-test-activeapparel.xml");
 			client.init();
 			
-			String result = client.getOrder(154444L);
+			String result = client.getOrder(348001L);
+			
+			if (result!=null) {
+				Order o = client.getOrderFromString(result);
+				System.out.println("Checkout order nr: " + o.getOrderId());
+				System.out.println("Order klient: " + o.getClientOrderNumber());
+			}
 			
 			System.out.println(result);
+			
+			
 			
 			/*
 			System.out.println("Merchant order ID: " + order.getMerchantOrderId());

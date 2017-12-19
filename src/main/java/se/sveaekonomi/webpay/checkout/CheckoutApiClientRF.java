@@ -119,4 +119,10 @@ public class CheckoutApiClientRF {
 		}
 	}
 	
+	public Order getOrderFromString(String orderStr) {
+		Order order = JsonUtil.gson.fromJson(orderStr, Order.class);
+		return order;
+	}
+	
+	
 }
