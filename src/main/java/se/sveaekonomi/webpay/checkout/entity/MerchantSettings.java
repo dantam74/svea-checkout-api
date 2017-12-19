@@ -1,5 +1,7 @@
 package se.sveaekonomi.webpay.checkout.entity;
 
+import se.sveaekonomi.webpay.checkout.JsonUtil;
+
 public class MerchantSettings {
 
 	private String	TermsUri;
@@ -40,6 +42,8 @@ public class MerchantSettings {
 		CheckoutValidationCallBackUri = checkoutValidationCallBackUri;
 	}
 	
-	
+	public String toString() {
+		return JsonUtil.gson.toJson(this);
+	}
 	
 }

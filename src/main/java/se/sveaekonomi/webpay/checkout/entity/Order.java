@@ -1,5 +1,7 @@
 package se.sveaekonomi.webpay.checkout.entity;
 
+import se.sveaekonomi.webpay.checkout.JsonUtil;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Order {
@@ -144,6 +146,9 @@ public class Order {
 		SveaWillBuyOrder = sveaWillBuyOrder;
 	}
 	
+	public String toString() {
+		return JsonUtil.gson.toJson(this);
+	}
 	
 	
 }

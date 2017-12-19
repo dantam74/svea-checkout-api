@@ -11,6 +11,10 @@ import se.sveaekonomi.webpay.checkout.entity.Order;
 
 public class TestCheckoutApi {
 
+	// private String CONFIG_FILE = "config-test-mytestfile.xml";
+	// private String CONFIG_FILE = "config-test-local-jetty.xml";
+	private String CONFIG_FILE = "config-test.xml";
+	
 	@Before
 	public void setUp() throws Exception {
 			
@@ -26,10 +30,10 @@ public class TestCheckoutApi {
 		CheckoutApiClientRF client = new CheckoutApiClientRF();
 		try {
 		
-			client.loadConfig("config-test-activeapparel.xml");
+			client.loadConfig(CONFIG_FILE);
 			client.init();
 			
-			String result = client.getOrder(348001L);
+			String result = client.getOrder(176825L);
 			
 			if (result!=null) {
 				Order o = client.getOrderFromString(result);

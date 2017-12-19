@@ -3,6 +3,8 @@ package se.sveaekonomi.webpay.checkout.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.sveaekonomi.webpay.checkout.JsonUtil;
+
 public class Cart {
 
 	private List<CartItem> Items;
@@ -23,5 +25,8 @@ public class Cart {
 		Items.add(item);
 	}
 	
-	
+	public String toString() {
+		return JsonUtil.gson.toJson(this);
+	}
+
 }

@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import se.sveaekonomi.webpay.checkout.entity.Order;
 
 public class CheckoutApiClientRF {
@@ -80,13 +80,59 @@ public class CheckoutApiClientRF {
 		// Disable SNI to prevent SSL-name problem
 		// System.setProperty("jsse.enableSNIExtension", "false");
 		
-		SimpleXmlConverterFactory converter = SimpleXmlConverterFactory.create();
+		ScalarsConverterFactory converter = ScalarsConverterFactory.create();
 		
 		retroFit = new Retrofit.Builder().baseUrl(this.serverName)
 				.addConverterFactory(converter)
 				.build();
 
 		service = retroFit.create(CheckoutApiService.class);		
+		
+	}
+	
+	/**
+	 * Creates an order 
+	 * @param ms
+	 * @param cart
+	 * @param locale
+	 * @param currency
+	 * @param countryCode
+	 * @param clientOrderNumber
+	 * @return
+	 * @throws Exception
+	 */
+	public String createOrder(
+			Order order
+			) throws Exception {
+		
+		StringBuffer body = new StringBuffer();
+		body.append(order.toString());
+
+		String ts = CheckoutUtil.getTimestampStr();
+		String auth = CheckoutUtil.calculateAuthHeader(merchantId, body.toString(), secretWord, ts);
+		
+		Call<ResponseBody> call = service.createOrder(auth, ts, 
+				body.toString());
+
+		Response<ResponseBody> response = call.execute();
+		
+		String resultMsg = null; 
+
+		if (response.errorBody()!=null) {
+			clientLog.debug(response.errorBody().string());
+			resultMsg = response.errorBody().string();
+		} else {
+			resultMsg = response.body().string();
+			clientLog.debug(response.message());
+			clientLog.debug(resultMsg);
+			clientLog.debug(response.raw().toString());
+		}		
+
+		if (resultMsg!=null && resultMsg.trim().length()>0) {
+			return resultMsg;
+		} else {
+			return null;
+		}
 		
 	}
 	

@@ -1,5 +1,7 @@
 package se.sveaekonomi.webpay.checkout.entity;
 
+import se.sveaekonomi.webpay.checkout.JsonUtil;
+
 public class CartItem {
 
 	private String 	ArticleNumber;
@@ -82,6 +84,9 @@ public class CartItem {
 		RowNumber = rowNumber;
 	}
 	
-	
+	public String toString() {
+		return JsonUtil.gson.toJson(this);
+	}
+
 	
 }
